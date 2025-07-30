@@ -9,12 +9,12 @@ output "roleName" {
 }
 
 output "githubSecretName" {
-  value       = var.githubSecretName
+  value       = local.secretName
   description = "The name of the secret that contains the role ARN."
 }
 
 output "githubAwsRegionVarName" {
-  value       = github_actions_variable.aws_region[0].variable_name
+  value       = local.awsRegionVarName
   description = "The name of the GitHub variable that contains the AWS region."
 }
 

@@ -30,6 +30,7 @@ locals {
   ]
 
   secretName = var.githubSecretName != null ? var.githubSecretName : "HEREYA_GITHUB_ACTIONS_AWS_ROLE${var.githubVarSuffix}"
+  awsRegionVarName = "AWS_REGION${var.githubVarSuffix}"
 }
 
 # Fetch GitHub OIDC's thumbprint
@@ -128,7 +129,7 @@ resource "github_actions_variable" "aws_region" {
   ])
 
   repository      = each.value
-  variable_name   = "AWS_REGION${var.githubVarSuffix}"
+  variable_name   = local.awsRegionVarName
   value           = data.aws_region.current.name
 }
 
