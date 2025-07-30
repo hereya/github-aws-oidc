@@ -17,7 +17,7 @@ variable "githubVarSuffix" {
 variable "githubSecretName" {
   description = "Name of the secret to create in the GitHub repository"
   type        = string
-  default     = "HEREYA_GITHUB_ACTIONS_AWS_ROLE"
+  default     = null
 }
 
 variable "roleNamePrefix" {

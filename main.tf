@@ -28,6 +28,8 @@ locals {
       name  = split("/", repo)[1]
     }
   ]
+
+  secretName = var.githubSecretName != null ? var.githubSecretName : "HEREYA_GITHUB_ACTIONS_AWS_ROLE${var.githubVarSuffix}"
 }
 
 # Fetch GitHub OIDC's thumbprint
