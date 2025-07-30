@@ -8,6 +8,12 @@ variable "organization" {
   type        = string
 }
 
+variable "githubVarSuffix" {
+  description = "Suffix for the GitHub variables"
+  type        = string
+  default     = ""
+}
+
 variable "githubSecretName" {
   description = "Name of the secret to create in the GitHub repository"
   type        = string

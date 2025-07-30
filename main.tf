@@ -126,7 +126,7 @@ resource "github_actions_variable" "aws_region" {
   ])
 
   repository      = each.value
-  variable_name   = "AWS_REGION"
+  variable_name   = "AWS_REGION${var.githubVarSuffix}"
   value           = data.aws_region.current.name
 }
 
