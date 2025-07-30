@@ -118,7 +118,7 @@ resource "github_actions_secret" "role_arn" {
   ])
 
   repository      = each.value
-  secret_name     = var.githubSecretName
+  secret_name     = local.secretName
   plaintext_value = aws_iam_role.github_actions.arn
 }
 
