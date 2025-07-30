@@ -19,6 +19,8 @@ provider "github" {
   owner = var.organization
 }
 
+data "aws_region" "current" {}  
+
 locals {
   allowedRepositories = [
     for repo in split(",", var.repositories) : {
@@ -115,6 +117,17 @@ resource "github_actions_secret" "role_arn" {
   repository      = each.value
   secret_name     = var.githubSecretName
   plaintext_value = aws_iam_role.github_actions.arn
+}
+
+# create variable AWS_REGION in each repository
+resource "github_actions_variable" "aws_region" {
+  for_each = toset([
+    for repo in local.allowedRepositories : repo.name
+  ])
+
+  repository      = each.value
+  variable_name   = "AWS_REGION"
+  value           = data.aws_region.current.name
 }
 
 locals {
